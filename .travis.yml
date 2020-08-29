@@ -1,10 +1,8 @@
 sudo: required
 services:
     - docker 
-
 before_install:
     - docker build -t beaulieudev/docker-react -f Dockerfile.dev .
-    
 script:
     - docker run -e CI=true beaulieudev/docker-react npm run test
 language: generic  
