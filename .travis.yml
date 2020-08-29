@@ -1,10 +1,12 @@
 sudo: required
 services:
     - docker 
+
 before_install:
     - docker build -t beaulieudev/docker-react -f Dockerfile.dev .
-    script:
-        - docker run -e CI=true beaulieudev/docker-react npm run test
+    
+script:
+    - docker run -e CI=true beaulieudev/docker-react npm run test
 language: generic  
 deploy: 
     provider: elasticbeanstalk
@@ -13,7 +15,7 @@ deploy:
     env: "Docker-env"
     bucket_name: "elasticbeanstalk-us-east-2-74797954019"
     bucket_path: "docker"
-    on: 
+    on:  
         branch: master
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: "$AWS_SECRET_KEY"
